@@ -24,11 +24,11 @@
 		
 
 
-		//Inicor red neuronal
+		//Inicio red neuronal
 		var network = new brain.NeuralNetwork();
 
-		//Entrenarla, darle ejemplos de cuando poner
-		//texto blanco, o texto negro segun el fondo
+		//Entrenarla, darle ejemplos de cuando poner el tipo de texto blanco, o texto negro segun el fondo requerido
+
 		network.train([
 			//Fondo negro (entrada en 0s) = texto blanco (salida = 1)
 			{input: {rojo: 0, verde: 0, azul: 0}, output: {color: 1}},
@@ -43,16 +43,15 @@
 		]);
 
 		function update(color) {
-			//Aqui hacemos el objeto "rgb" para que sea similar al video
+			//Hacemos el objeto "rgb" 
 			var rgb = [color.channels.r, color.channels.g, color.channels.b];
 			//console.log(rgb);
 
 			var div = document.getElementById("sitio");
-			div.style.background = color.toHEXString(); //Nueva forma para poner el color de fondo
+			div.style.background = color.toHEXString();
 
 			//Tomar el fondo actual elegido por el usuario,
-			//para usarlo de entrada para que la red nos de su
-			//prediccion del mejor color de texto a utilizar
+			//para usarlo de entrada para que la red nos de su prediccion del mejor color de texto a utilizar
 			var entrada = {
 				rojo: rgb[0]/255,
 				verde: rgb[1]/255,
